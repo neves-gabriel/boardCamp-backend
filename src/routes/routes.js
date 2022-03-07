@@ -10,6 +10,13 @@ import {
   updateCustomer,
 } from '../controllers/customers.js';
 import { postCustomerValidation } from '../middlewares/postCustomerValidation.js';
+import {
+  listRentals,
+  postRental,
+  finishRental,
+  deleteRental,
+} from '../controllers/rentals.js';
+import { postRentalValidation } from '../middlewares/postRentalValidation.js';
 
 const routes = new Router();
 
@@ -27,5 +34,10 @@ routes.get('/customers', listCustomers);
 routes.post('/customers', postCustomerValidation, postCustomer);
 routes.get('/customers/:id', selectCustomer);
 routes.put('/customers/:id', postCustomerValidation, updateCustomer);
+
+routes.get('/rentals', listRentals);
+routes.post('/rentals', postRentalValidation, postRental);
+routes.post('/rentals/:id/return', finishRental);
+routes.delete('/rentals/:id', deleteRental);
 
 export default routes;
